@@ -14,9 +14,9 @@ jobs:
         run: |
           curl -X POST \
           --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels \
-          -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          -H 'content-type: application/json' \
-          -d '{
-              "labels": ["bug"]
-            }' \
+          -H "authorization: Bearer ${{ github.token }}" \
+          -H "accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          -H "content-type: application/json" \
+          -d '{"labels":["bug"]}' \
           --fail
